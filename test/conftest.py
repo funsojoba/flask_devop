@@ -8,7 +8,9 @@ def http_client():
     return app.test_client()
 
 @pytest.fixture(scope="module")
-def redis_client():
+def redis_client(redis_url):
+    if redis_url:
+        return redis.Redis.from_url(redis_url)
     return redis.Redis()
 
 def pytest_addoption(parser):

@@ -15,4 +15,9 @@ dev = [
     "pytest",
     "pytest-timeout",
     "requests",
+    "bandit",
+    "black",
+    "flake8",
+    "isort",
+    "pylint",
 ]
