@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-app
+spec:
+  selector:
+    matchLabels:
+      app: notification-app
+  template:
+    metadata:
+      labels:
+        app: notification-app
+    spec:
+      containers:
+      - name: notification-app
+        image: funsojoba/notification-service
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000

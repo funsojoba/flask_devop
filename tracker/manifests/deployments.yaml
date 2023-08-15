@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracker-app
+spec:
+  selector:
+    matchLabels:
+      app: tracker-app
+  template:
+    metadata:
+      labels:
+        app: tracker-app
+    spec:
+      containers:
+      - name: tracker-app
+        image: funsojoba/page-tracker
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
