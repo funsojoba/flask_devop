@@ -23,7 +23,7 @@ def connect_to_redis():
 @app.get("/")
 def home():
     """
-        The home function, returns the view count of the page
+        The home function, returns the view count of the page.
     """
     try:
         page_count = connect_to_redis().incr("page_count")
