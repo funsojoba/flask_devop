@@ -12,13 +12,21 @@ app = Flask(__name__)
 # redis = Redis()
 
 
+def connect_to_redis():
+    """
+    Connects to the Redis server
+    """
+    return Redis.from_url(os.getenv("REDIS_URL", "redis://redis:6379"))  # Using the service name 'redis'
+
+
+
 @app.get("/")
 def home():
     """
         The home function, returns the view count of the page
     """
     try:
-        page_count = redis().incr("page_count")
+        page_count = connect_to_redis().incr("page_count")
     except RedisError:
         app.logger.exception("Redis error")
         return "Sorry, something went wrong \N{pensive face}", 500
@@ -26,13 +34,6 @@ def home():
     return f"This page has been viewed {page_count} {times}"
 
 
-@cache
-def redis():
-    """
-        Abstracts the redis class
-    """
-    return Redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
-
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)

@@ -2,9 +2,18 @@ version: '3.4'
 
 services:
   flaskdevop:
-    image: flaskdevop
+    restart: always
+    image: page-tracker
     build:
-      context: .
-      dockerfile: ./Dockerfile
+      context: ./src/
+      dockerfile: Dockerfile
+    # command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 -m flask run --no-debugger --no-reload --host 0.0.0.0 --port 5002"]
     ports:
-      - 5002:5002
+      - 5000:5000
+      - 5678:5678
+    environment:
+      - FLASK_APP=src/page_tracker/app.py
+      - REDIS_URL=redis://redis:6379 
+  redis:
+    image: redis:alpine
+    container_name: page_tracker_redis
