@@ -1,0 +1,8 @@
+pyproject.toml
+tracker/page_tracker/__init__.py
+tracker/page_tracker/app.py
+tracker/page_tracker.egg-info/PKG-INFO
+tracker/page_tracker.egg-info/SOURCES.txt
+tracker/page_tracker.egg-info/dependency_links.txt
+tracker/page_tracker.egg-info/requires.txt
+tracker/page_tracker.egg-info/top_level.txt

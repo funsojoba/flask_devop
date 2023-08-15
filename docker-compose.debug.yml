@@ -11,4 +11,4 @@ services:
       - 5002:5002
       - 5678:5678
     environment:
-      - FLASK_APP=src/page_tracker/app.py
+      - FLASK_APP=tracker/page_tracker/app.py
