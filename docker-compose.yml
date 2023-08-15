@@ -14,6 +14,16 @@ services:
     environment:
       - FLASK_APP=/page_tracker/app.py
       - REDIS_URL=redis://redis:6379 
+  notification-service:
+    restart: always
+    depends_on: 
+      - flaskdevop
+    image: notification-service
+    build:
+      context: ./notification
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
   redis:
     image: redis:alpine
     container_name: tracker
